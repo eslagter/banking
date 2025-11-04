@@ -4,15 +4,21 @@ import { BrowserRouter, Route, Routes } from "react-router";
 
 import "./index.css";
 
-import { HomePage } from "./pages";
-import { MainLayout } from "./components/layout/MainLayout";
+import { ContentPage } from "./pages";
+import { DashboardLayout, MainLayout } from "./components/layout";
+import { DashboardIndex } from "./pages/Dashboard/Index/DashboardIndex";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <BrowserRouter>
       <Routes>
         <Route element={<MainLayout />}>
-          <Route index path="/" Component={HomePage} />
+          {/* catch all */}
+          <Route path="*" Component={ContentPage} />
+
+          <Route path="dashboard" element={<DashboardLayout />}>
+            <Route index path="/dashboard/" Component={DashboardIndex}></Route>
+          </Route>
         </Route>
       </Routes>
     </BrowserRouter>
