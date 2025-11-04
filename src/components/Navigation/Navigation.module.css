@@ -1,0 +1,71 @@
+.navigation {
+  padding-block: 2rem;
+  display: flex;
+
+  @media (--mobile-only) {
+    padding: 0.5rem 0.5rem 1rem;
+  }
+
+  & > nav {
+    display: flex;
+    gap: 1rem;
+    width: 100vw;
+    max-width: 1280px;
+    margin-inline: auto;
+  }
+
+  a {
+    color: var(--secondary);
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    text-decoration: none;
+
+    &:global(.active) {
+      color: var(--gray-500);
+      text-decoration: underline;
+    }
+
+    &:last-of-type {
+      margin-left: auto;
+      text-align: right;
+    }
+  }
+
+  .dashLink {
+    @media (--tablet) {
+      font-size: 1.5rem;
+    }
+    font-weight: bold;
+    color: var(--primary);
+
+    .homeIcon {
+      background-color: var(--primary);
+      color: var(--light);
+      border-radius: 100%;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+
+      /* size of circle and B inside is relative to font-size */
+      line-height: 2.5em;
+      width: 2.5em;
+      height: 2.5em;
+      text-transform: uppercase;
+    }
+  }
+
+  .sessionLink {
+    border: 1px solid var(--primary);
+    border-radius: 3rem;
+    padding-inline: 2rem;
+    margin-block: 0.5rem;
+
+    &:hover,
+    &:focus-visible {
+      color: var(--secondary);
+    }
+  }
+}

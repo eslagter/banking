@@ -1,0 +1,34 @@
+.grid {
+  display: grid;
+  gap: 2rem;
+
+  @media (--tablet) {
+    grid-template-columns: 1fr minmax(300px, 3fr);
+  }
+
+  [role="navigation"] {
+    display: flex;
+    flex-direction: column;
+
+    a {
+      display: flex;
+      gap: 1rem;
+      justify-content: left;
+      align-items: center;
+      padding-block: 1.25rem;
+      color: var(--gray-500);
+
+      & > :last-child {
+        margin-left: auto;
+      }
+      &:not(:last-of-type) {
+        border-bottom: 1px solid var(--gray-200);
+      }
+
+      &:hover {
+        color: var(--dark);
+        border-bottom-color: var(--dark);
+      }
+    }
+  }
+}
