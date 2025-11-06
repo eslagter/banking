@@ -1,11 +1,31 @@
-import { useLocation } from "react-router";
+import { useQuery } from "@tanstack/react-query";
+import { useNavigate, useParams } from "react-router";
+import { fetchBySlug } from "../../storyblok/fetchBySlug";
 
 export const ContentPage = () => {
-  const nav = useLocation();
+  const { "*": slug } = useParams();
+  const navigate = useNavigate();
+
+  const { data, isLoading } = useQuery({
+    queryFn: () => fetchBySlug(slug || "home"),
+    queryKey: ["story", `story-${slug}`],
+    select: (response) => response?.story,
+  });
+
+  if (isLoading) {
+    return "Loading...";
+  } else if (!data?.content) {
+    navigate("/error-404");
+  }
+
   return (
-    <div>
-      <h1>Hi from {nav.pathname} </h1>
-      <pre>{JSON.stringify(nav, null, 2)}</pre>
-    </div>
+    <>
+      <meta name="keywords" content={data.name} />
+
+      <div>
+        <h1>Hi from {data.name}</h1>
+        <pre>{JSON.stringify(data, null, 2)}</pre>
+      </div>
+    </>
   );
 };
