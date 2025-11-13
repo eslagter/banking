@@ -38,7 +38,9 @@ export const DashboardLayout = () => {
 
           return (
             <NavLink {...props}>
-              {children} <FaChevronDown />
+              <>{children}</>
+
+              <FaChevronDown />
             </NavLink>
           );
         })}

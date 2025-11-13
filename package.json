@@ -10,7 +10,8 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "prepare": "husky && husky install"
+    "prepare": "husky && husky install",
+    "storyblok-cli": "storyblok components pull --space 288322615328369"
   },
   "dependencies": {
     "@tanstack/react-query": "^5.90.6",

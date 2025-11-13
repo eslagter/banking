@@ -1,30 +1,27 @@
-import { useQuery } from "@tanstack/react-query";
 import { useNavigate, useParams } from "react-router";
-import { fetchBySlug } from "../../storyblok/fetchBySlug";
+import { usePage } from "../../storyblok/usePage";
+import { Page } from "../../components/storyblok/Page";
 
 export const ContentPage = () => {
-  const { "*": slug } = useParams();
   const navigate = useNavigate();
-
-  const { data, isLoading } = useQuery({
-    queryFn: () => fetchBySlug(slug || "home"),
-    queryKey: ["story", `story-${slug}`],
-    select: (response) => response?.story,
-  });
+  const { "*": slug } = useParams();
+  const { isLoading, story } = usePage(slug);
 
   if (isLoading) {
     return "Loading...";
-  } else if (!data?.content) {
+  } else if (!story?.content) {
     navigate("/error-404");
+    return;
   }
 
   return (
     <>
-      <meta name="keywords" content={data.name} />
+      <meta name="keywords" content={story.name} />
 
       <div>
-        <h1>Hi from {data.name}</h1>
-        <pre>{JSON.stringify(data, null, 2)}</pre>
+        <h1>{story.name}</h1>
+
+        <Page {...story.content} />
       </div>
     </>
   );

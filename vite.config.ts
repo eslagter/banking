@@ -19,6 +19,4 @@ export default defineConfig({
       ],
     },
   },
-
-  server: { https: true, open: true },
 });
