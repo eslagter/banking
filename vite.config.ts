@@ -4,6 +4,7 @@ import mkcert from "vite-plugin-mkcert";
 
 import postcssGlobalData from "@csstools/postcss-global-data";
 import presetEnv from "postcss-preset-env";
+import postcssMixins from "postcss-mixins";
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -12,8 +13,9 @@ export default defineConfig({
     postcss: {
       plugins: [
         postcssGlobalData({
-          files: ["./src/postcss/custom-media.css"],
+          files: ["./src/postcss/custom-media.css", "./src/postcss/mixins.css"],
         }),
+        postcssMixins(),
 
         presetEnv(),
       ],

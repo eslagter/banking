@@ -16,13 +16,9 @@ export const ContentPage = () => {
 
   return (
     <>
-      <meta name="keywords" content={story.name} />
+      <title>{story.name} | Banking dashboard app</title>
 
-      <div>
-        <h1>{story.name}</h1>
-
-        <Page {...story.content} />
-      </div>
+      <Page {...story.content} />
     </>
   );
 };
