@@ -19,8 +19,14 @@ export const usePage = (slug: string | undefined): Props => {
   const { data: links, isLoading: isLinksLoading } = useQuery({
     queryFn: () => fetchAllLinks(),
     queryKey: ["links"],
-    select: (response) =>
-      Object.entries(response?.links).map((entry) => entry[1] as Link),
+    select: (response) => {
+      const links = Object.values(response.links);
+
+      // sort links by position (reflects order in Storyblok admin UI)
+      links.sort((a, b) => b.position - a.position);
+
+      return links;
+    },
   });
 
   return {

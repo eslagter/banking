@@ -21,7 +21,7 @@ const Page = (props: PageProps) => {
   }
 
   return (
-    <div>
+    <div style={{ height: "200vh" }}>
       {props.body.map((component) => (
         <Blok key={component["_uid"]} blok={component} />
       ))}
