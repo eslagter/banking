@@ -31,8 +31,43 @@ export interface Story {
   alternates: Alternate[];
 }
 
-export interface Content {
+export type BaseContent = {
   component: string;
+  _uid: string;
+  _editable?: string;
+};
+
+// Union type that unites all content types
+export type Content = TeaserComponent | GridComponent | FeatureComponent;
+
+export type GridComponent = BaseContent & {
+  component: "grid";
+  columns: Content[];
+};
+
+export type TeaserComponent = BaseContent & {
+  component: "teaser";
+  headline: string;
+};
+
+export type FeatureComponent = BaseContent & {
+  component: "feature";
+
+  name: string;
+  title: string;
+  text: string;
+  image: Asset;
+  link: StoryLink;
+};
+
+export interface StoryLink {
+  cached_url: string;
+  url: string;
+}
+
+export interface Asset {
+  filename: string;
+  alt: string;
 }
 
 export interface TranslatedSlug {
